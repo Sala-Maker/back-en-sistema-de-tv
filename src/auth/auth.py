@@ -3,10 +3,10 @@
 from flask import Blueprint, request, jsonify
 from src.models.user import User
 from src.config.database import db
+from src.config.env import SECRET_KEY
+from werkzeug.security import check_password_hash
 import jwt
 import datetime
-
-SECRET_KEY = 'segredo123'  # 🔒 Troque por algo seguro
 
 auth_bp = Blueprint('auth_bp', __name__)
 
@@ -16,8 +16,9 @@ def login():
     email = data.get('email')
     senha = data.get('senha')
 
-    usuario = User.query.filter_by(email=email, senha=senha).first()
-    if not usuario:
+    usuario = User.query.filter_by(email=email).first()
+
+    if not usuario or not check_password_hash(usuario.senha, senha):
         return jsonify({'erro': 'Credenciais inválidas'}), 401
 
     payload = {

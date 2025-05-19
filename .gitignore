@@ -1,0 +1,16 @@
+# Evita subir arquivos sensíveis
+.env
+
+# Ignora ambiente virtual Python
+venv/
+
+# Pycache e arquivos temporários
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Configs de editor
+.vscode/
+.idea/
+*.swp

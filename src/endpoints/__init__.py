@@ -1,8 +1,8 @@
 from flask import Blueprint
 
-from news_screen import funNewsScreen
-from schedule_screen import funScheduleScreen
-from warnings_screen import funWarningScreen
+from src.endpoints.noticia_screen import funNewsScreen
+from src.endpoints.horario_screen import funScheduleScreen
+from src.endpoints.aviso_screen import funWarningScreen
 
 timerSc=None
 newsSc=None
