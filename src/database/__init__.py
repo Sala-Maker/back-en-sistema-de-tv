@@ -2,25 +2,26 @@ from sqlalchemy.orm import DeclarativeBase
 
 baseMDL = DeclarativeBase
 
-#  2. Tela de Noticias
+#  1. Tela de Noticias
 #     > Titulo
+#     > subtitulo
+#     > Imagem
 #     > Descrição
 #     > Data
 
-#  3. Avisos
+#  2. Avisos
 #     > Imagem
-#     > Data comemorativa
+#     > Data
 #     > Nome evento
-#     > Descrição aviso
+#     > Descrição 
 
-#  4. Informações API
-#     > Data atual
-#     > Horario atual
-#     > Clima hoje
-#         > maxima 
-#         > minima
-#         > imagem
-#     > Clima amanha
-#         > maxima 
-#         > minima
-#         > imagem
+#  3. Horarios
+#     > Dia da semana
+#     > Turno
+#     > Curso
+#     > Nome do professor
+#     > Nome da disciplina
+#     > Sala
+#     > Semestre
+#     > Horario Inicio
+#     > Horario Fim

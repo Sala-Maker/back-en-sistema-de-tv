@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\erick\Documents\projetinhos murilo\SISTV\.venv
+set VIRTUAL_ENV=C:\Users\muril\OneDrive\Documentos\Visual Studio 2022\Projeto Salamaker\Sistema-de-TV\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 

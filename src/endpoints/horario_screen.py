@@ -1,2 +1,1 @@
-def funScheduleScreen():
-    return "informations from Screen Schedule"
+from flask import Blueprint
