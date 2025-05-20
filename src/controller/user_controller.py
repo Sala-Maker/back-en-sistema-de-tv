@@ -1,7 +1,6 @@
 # src/controllers/user_controller.py
 
 from flask import Blueprint, request, jsonify
-from src.dao import user_dao
 from src.auth.decorators import require_role
 from src.models.user import User
 
