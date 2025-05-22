@@ -1,13 +1,28 @@
-from services.noticia_service import criar_noticia_service, listar_noticias_service, buscar_noticia_service, deletar_noticia_service
+from src.models.noticia_model import Noticia
+from src.database.db import db
 
-def criar_noticia(data):
-    return criar_noticia_service(data)
+def get_all_noticias():
+    return Noticia.query.all()
 
-def listar_noticias():
-    return listar_noticias_service()
+def get_noticia_by_id(noticia_id):
+    return Noticia.query.get(noticia_id)
 
-def buscar_noticia(id):
-    return buscar_noticia_service(id)
+def create_noticia(data):
+    noticia = Noticia(
+        titulo=data.get("titulo"),
+        descricao=data.get("descricao"),
+        imagem=data.get("imagem"),
+        data_publicacao=data.get("data_publicacao"),
+        data_expiracao=data.get("data_expiracao"),
+    )
+    db.session.add(noticia)
+    db.session.commit()
+    return noticia
 
-def deletar_noticia(id):
-    return deletar_noticia_service(id)
+def delete_noticia(noticia_id):
+    noticia = Noticia.query.get(noticia_id)
+    if noticia:
+        db.session.delete(noticia)
+        db.session.commit()
+        return True
+    return False
