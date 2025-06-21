@@ -6,3 +6,4 @@ Flask-Bcrypt
 Flask-JWT-Extended
 psycopg2-binary
 Flask-cors
+gunicorn
