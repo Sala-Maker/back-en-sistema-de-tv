@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify
-from src.auth.services import verificar_usuario, gerar_token, criar_usuario
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from src.auth.services import verificar_usuario, gerar_token, criar_usuario, listar_usuarios
+
 auth_bp = Blueprint('auth_bp', __name__)
 
 # Rota de login
@@ -46,3 +48,23 @@ def register():
         return jsonify({'error': 'Usuário já existe'}), 400
 
     return jsonify({'mensagem': 'Usuário registrado com sucesso'}), 201
+
+# Rota para listar todos os usuários (somente superadmin)
+@auth_bp.route('/usuarios', methods=['GET'])
+@jwt_required()
+def get_usuarios():
+    identidade = get_jwt_identity()
+    if identidade['role'] != 'superadmin':
+        return jsonify({'error': 'Acesso negado'}), 403
+
+    usuarios = listar_usuarios()
+    usuarios_json = [
+        {
+            'id': u.id,
+            'nome': u.nome,
+            'email': u.email,
+            'role': u.role,
+            'setor': u.setor
+        } for u in usuarios
+    ]
+    return jsonify(usuarios_json), 200

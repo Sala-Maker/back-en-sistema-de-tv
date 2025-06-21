@@ -6,10 +6,8 @@ bcrypt = Bcrypt()
 
 # Criar um novo usuário no banco de dados
 def criar_usuario(nome, email, senha, role, setor=None):
-    # Verificar se email já está em uso (opcional)
     if User.query.filter_by(email=email).first():
-        return None  # Poderia lançar uma exceção ou retornar mensagem personalizada
-
+        return None
     user = User(
         nome=nome,
         email=email,
@@ -17,7 +15,6 @@ def criar_usuario(nome, email, senha, role, setor=None):
         setor=setor
     )
     user.senha_hash = bcrypt.generate_password_hash(senha).decode('utf-8')
-
     db.session.add(user)
     db.session.commit()
     return user
@@ -37,3 +34,7 @@ def gerar_token(user):
         'setor': user.setor
     }
     return create_access_token(identity=payload)
+
+# Lista todos os usuários (apenas para superadmin)
+def listar_usuarios():
+    return User.query.all()
