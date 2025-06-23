@@ -19,6 +19,20 @@ def create_noticia(data):
     db.session.commit()
     return noticia
 
+def update_noticia(noticia_id, data):
+    noticia = Noticia.query.get(noticia_id)
+    if not noticia:
+        return None
+
+    noticia.titulo = data.get("titulo", noticia.titulo)
+    noticia.descricao = data.get("descricao", noticia.descricao)
+    noticia.imagem = data.get("imagem", noticia.imagem)
+    noticia.data_publicacao = data.get("data_publicacao", noticia.data_publicacao)
+    noticia.data_expiracao = data.get("data_expiracao", noticia.data_expiracao)
+
+    db.session.commit()
+    return noticia
+
 def delete_noticia(noticia_id):
     noticia = Noticia.query.get(noticia_id)
     if noticia:

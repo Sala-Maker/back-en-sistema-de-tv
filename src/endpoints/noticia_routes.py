@@ -3,6 +3,7 @@ from src.controller.noticia_controller import (
     get_all_noticias,
     get_noticia_by_id,
     create_noticia,
+    update_noticia,
     delete_noticia
 )
 
@@ -28,6 +29,15 @@ def criar_noticia():
     data = request.get_json()
     noticia = create_noticia(data)
     return jsonify(noticia.to_dict()), 201
+
+# PUT /api/noticias/<id>
+@noticia_bp.route("/<int:noticia_id>", methods=["PUT"])
+def atualizar_noticia(noticia_id):
+    data = request.get_json()
+    noticia = update_noticia(noticia_id, data)
+    if noticia:
+        return jsonify(noticia.to_dict())
+    return jsonify({"error": "Notícia não encontrada"}), 404
 
 # DELETE /api/noticias/<id>
 @noticia_bp.route("/<int:noticia_id>", methods=["DELETE"])

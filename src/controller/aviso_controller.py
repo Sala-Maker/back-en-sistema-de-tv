@@ -18,6 +18,17 @@ def create_aviso(data):
     db.session.commit()
     return aviso
 
+def update_aviso(aviso_id, data):
+    aviso = Aviso.query.get(aviso_id)
+    if not aviso:
+        return None
+    aviso.titulo = data.get("titulo", aviso.titulo)
+    aviso.descricao = data.get("descricao", aviso.descricao)
+    aviso.data = data.get("data", aviso.data)
+    aviso.publico_destino = data.get("publico_destino", aviso.publico_destino)
+    db.session.commit()
+    return aviso
+
 def delete_aviso(aviso_id):
     aviso = Aviso.query.get(aviso_id)
     if aviso:

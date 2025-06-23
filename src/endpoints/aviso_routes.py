@@ -3,6 +3,7 @@ from src.controller.aviso_controller import (
     get_all_avisos,
     get_aviso_by_id,
     create_aviso,
+    update_aviso,
     delete_aviso
 )
 
@@ -28,6 +29,15 @@ def criar_aviso():
     data = request.get_json()
     aviso = create_aviso(data)
     return jsonify(aviso.to_dict()), 201
+
+# PUT /api/avisos/<id>
+@aviso_bp.route("/<int:aviso_id>", methods=["PUT"])
+def atualizar_aviso(aviso_id):
+    data = request.get_json()
+    aviso = update_aviso(aviso_id, data)
+    if aviso:
+        return jsonify(aviso.to_dict())
+    return jsonify({"error": "Aviso não encontrado"}), 404
 
 # DELETE /api/avisos/<id>
 @aviso_bp.route("/<int:aviso_id>", methods=["DELETE"])
