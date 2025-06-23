@@ -28,12 +28,11 @@ def verificar_usuario(email, senha):
 
 # Gera um JWT com informações do usuário
 def gerar_token(user):
-    payload = {
-        'id': user.id,
+    additional_claims = {
         'role': user.role,
         'setor': user.setor
     }
-    return create_access_token(identity=payload)
+    return create_access_token(identity=str(user.id), additional_claims=additional_claims)
 
 # Lista todos os usuários (apenas para superadmin)
 def listar_usuarios():

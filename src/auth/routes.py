@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from src.auth.services import verificar_usuario, gerar_token, criar_usuario, listar_usuarios
 
 auth_bp = Blueprint('auth_bp', __name__)
@@ -53,8 +53,10 @@ def register():
 @auth_bp.route('/usuarios', methods=['GET'])
 @jwt_required()
 def get_usuarios():
-    identidade = get_jwt_identity()
-    if identidade['role'] != 'superadmin':
+    identidade = get_jwt_identity()  # normalmente o id do usuário (str ou int)
+    claims = get_jwt()               # dicionário com claims extras, tipo 'role'
+
+    if claims.get('role') != 'superadmin':
         return jsonify({'error': 'Acesso negado'}), 403
 
     usuarios = listar_usuarios()
