@@ -10,7 +10,7 @@ def get_imagem_aviso_by_id(img_id):
     return ImagemAviso.query.get(img_id)
 
 def create_imagem_aviso(data):
-    imagem = ImagemAviso(aviso_id=data.get("aviso_id"), url=data.get("url"))
+    imagem = ImagemAviso(aviso_id=data.get("aviso_id"), imagem_path=data.get("imagem_path"))
     db.session.add(imagem)
     db.session.commit()
     return imagem

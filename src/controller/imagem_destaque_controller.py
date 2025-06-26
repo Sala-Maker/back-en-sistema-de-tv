@@ -8,10 +8,15 @@ def get_imagem_destaque_by_id(img_id):
     return ImagemDestaque.query.get(img_id)
 
 def create_imagem_destaque(data):
-    imagem = ImagemDestaque(titulo=data.get("titulo"), url=data.get("url"))
+    imagem = ImagemDestaque(
+        destaque_id=data.get("destaque_id"),
+        imagem_path=data.get("imagem_path"),
+        descricao=data.get("descricao")
+    )
     db.session.add(imagem)
     db.session.commit()
     return imagem
+
 
 def delete_imagem_destaque(img_id):
     imagem = ImagemDestaque.query.get(img_id)

@@ -1,15 +1,18 @@
 from src.database.db import db
 
 class ImagemDestaque(db.Model):
-    __tablename__ = "imagens_destaque"
+    __tablename__ = "imagem_destaque"
+
 
     id = db.Column(db.Integer, primary_key=True)
-    titulo = db.Column(db.String(100))
-    url = db.Column(db.String(255))  # Caminho ou URL da imagem
+    destaque_id = db.Column(db.Integer, db.ForeignKey('noticias.id', ondelete='CASCADE'))
+    imagem_path = db.Column(db.Text, nullable=False)
+    descricao = db.Column(db.Text)
 
     def to_dict(self):
         return {
             "id": self.id,
-            "titulo": self.titulo,
-            "url": self.url
+            "destaque_id": self.destaque_id,
+            "imagem_path": self.imagem_path,
+            "descricao": self.descricao
         }
