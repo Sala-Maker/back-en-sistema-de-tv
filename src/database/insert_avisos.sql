@@ -4,6 +4,7 @@ CREATE TABLE avisos (
     titulo VARCHAR(100),
     descricao TEXT,
     data DATE,
+    imagem VARCHAR(255),
     publico_destino VARCHAR(50)
 );
 

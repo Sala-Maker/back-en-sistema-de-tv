@@ -12,6 +12,7 @@ def create_noticia(data):
         titulo=data.get("titulo"),
         descricao=data.get("descricao"),
         imagem=data.get("imagem"),
+        urlQr=data.get("urlQr"),
         data_publicacao=data.get("data_publicacao"),
         data_expiracao=data.get("data_expiracao"),
     )
@@ -27,6 +28,7 @@ def update_noticia(noticia_id, data):
     noticia.titulo = data.get("titulo", noticia.titulo)
     noticia.descricao = data.get("descricao", noticia.descricao)
     noticia.imagem = data.get("imagem", noticia.imagem)
+    noticia.urlQr = data.get("urlQr", noticia.urlQr)
     noticia.data_publicacao = data.get("data_publicacao", noticia.data_publicacao)
     noticia.data_expiracao = data.get("data_expiracao", noticia.data_expiracao)
 

@@ -7,6 +7,7 @@ class Noticia(db.Model):
     titulo = db.Column(db.String(255), nullable=False)
     descricao = db.Column(db.Text, nullable=False)
     imagem = db.Column(db.String(255))
+    urlQr = db.Column(db.String(255))
     data_publicacao = db.Column(db.Date, server_default=db.func.current_date())
     data_expiracao = db.Column(db.Date)
 
@@ -16,6 +17,7 @@ class Noticia(db.Model):
             "titulo": self.titulo,
             "descricao": self.descricao,
             "imagem": self.imagem,
+            "urlQr": self.urlQr,
             "data_publicacao": self.data_publicacao.isoformat() if self.data_publicacao else None,
             "data_expiracao": self.data_expiracao.isoformat() if self.data_expiracao else None,
         }
