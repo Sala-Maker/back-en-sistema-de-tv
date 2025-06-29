@@ -7,7 +7,7 @@ class Noticia(db.Model):
     titulo = db.Column(db.String(255), nullable=False)
     descricao = db.Column(db.Text, nullable=False)
     imagem = db.Column(db.String(255))
-    urlQr = db.Column(db.String(255))
+    urlQr = db.Column("urlqr", db.String(255))
     data_publicacao = db.Column(db.Date, server_default=db.func.current_date())
     data_expiracao = db.Column(db.Date)
 
