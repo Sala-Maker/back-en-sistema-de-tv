@@ -17,7 +17,6 @@ def create_imagem_destaque(data):
     db.session.commit()
     return imagem
 
-
 def delete_imagem_destaque(img_id):
     imagem = ImagemDestaque.query.get(img_id)
     if imagem:
