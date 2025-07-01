@@ -4,8 +4,8 @@ CREATE TABLE usuarios (
     nome VARCHAR(100),
     email VARCHAR(100) UNIQUE NOT NULL,
     senha_hash VARCHAR(255) NOT NULL,
-    role VARCHAR(20) CHECK (tipo_usuario IN ('superadmin', 'admin', 'editor')),
-    setor VARCHAR(100); 
+    role VARCHAR(20) CHECK (role IN ('superadmin', 'admin', 'editor')),
+    setor VARCHAR(100),
     ativo BOOLEAN DEFAULT TRUE
 );
 

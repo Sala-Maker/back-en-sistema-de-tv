@@ -12,6 +12,7 @@ def create_aviso(data):
         titulo=data.get("titulo"),
         descricao=data.get("descricao"),
         data=data.get("data"),
+        imagem=data.get("imagem"),
         publico_destino=data.get("publico_destino"),
     )
     db.session.add(aviso)
@@ -25,6 +26,7 @@ def update_aviso(aviso_id, data):
     aviso.titulo = data.get("titulo", aviso.titulo)
     aviso.descricao = data.get("descricao", aviso.descricao)
     aviso.data = data.get("data", aviso.data)
+    aviso.imagem = data.get("imagem", aviso.imagem)
     aviso.publico_destino = data.get("publico_destino", aviso.publico_destino)
     db.session.commit()
     return aviso

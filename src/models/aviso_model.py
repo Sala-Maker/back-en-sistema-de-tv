@@ -7,6 +7,7 @@ class Aviso(db.Model):
     titulo = db.Column(db.String(100))
     descricao = db.Column(db.Text)
     data = db.Column(db.Date)
+    imagem = db.Column(db.String(255))
     publico_destino = db.Column(db.String(50))
 
     def to_dict(self):
@@ -15,5 +16,6 @@ class Aviso(db.Model):
             "titulo": self.titulo,
             "descricao": self.descricao,
             "data": self.data.isoformat() if self.data else None,
+            "imagem": self.imagem,
             "publico_destino": self.publico_destino,
         }
