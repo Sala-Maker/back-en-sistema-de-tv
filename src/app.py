@@ -15,13 +15,16 @@ from src.endpoints.aviso_routes import aviso_bp
 from src.endpoints.noticia_routes import noticia_bp
 from src.endpoints.imagem_destaque_routes import imagem_destaque_bp
 from src.endpoints.imagem_aviso_routes import imagem_aviso_bp
+from src.endpoints.upload_routes import upload_bp
 
 # Carregar variáveis do .env
 load_dotenv()
 
 def create_app():
-    app = Flask(__name__)
+
+    app = Flask(__name__, static_url_path="/static", static_folder="static")
     app.url_map.strict_slashes = False
+
 
     #inicia o CORS
     CORS(app, supports_credentials=True)
@@ -30,7 +33,6 @@ def create_app():
     # Configurações do banco e secret key
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
     app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
     app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
         'connect_args': {
@@ -51,6 +53,7 @@ def create_app():
     app.register_blueprint(noticia_bp, url_prefix="/api/noticias")
     app.register_blueprint(imagem_destaque_bp, url_prefix="/api/imagemDestaque")
     app.register_blueprint(imagem_aviso_bp, url_prefix="/api/imagemAviso")
+    app.register_blueprint(upload_bp, url_prefix="/api")
 
     # Rota raiz simples para teste
     @app.route("/")
