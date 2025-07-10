@@ -7,3 +7,4 @@ Flask-JWT-Extended
 psycopg2-binary
 Flask-cors
 gunicorn
+alembic

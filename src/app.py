@@ -13,8 +13,6 @@ from src.auth.routes import auth_bp
 from src.endpoints.horario_routes import horario_bp
 from src.endpoints.aviso_routes import aviso_bp
 from src.endpoints.noticia_routes import noticia_bp
-from src.endpoints.imagem_destaque_routes import imagem_destaque_bp
-from src.endpoints.imagem_aviso_routes import imagem_aviso_bp
 from src.endpoints.upload_routes import upload_bp
 
 # Carregar variáveis do .env
@@ -51,8 +49,6 @@ def create_app():
     app.register_blueprint(horario_bp, url_prefix="/api/horarios")
     app.register_blueprint(aviso_bp, url_prefix="/api/avisos")
     app.register_blueprint(noticia_bp, url_prefix="/api/noticias")
-    app.register_blueprint(imagem_destaque_bp, url_prefix="/api/imagemDestaque")
-    app.register_blueprint(imagem_aviso_bp, url_prefix="/api/imagemAviso")
     app.register_blueprint(upload_bp, url_prefix="/api")
 
     # Rota raiz simples para teste
